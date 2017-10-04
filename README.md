@@ -8,12 +8,8 @@ I built it for Struts 1 as an exercise.
 
 There is no database, just a Map.
 
-<<<<<<< HEAD
 I add a very good pagination taglib from <https://gist.github.com/bijukunjummen/6468547>.
-
 I also add Bootstrap CDN for pagination look and feel.
 
-=======
->>>>>>> origin/master
 May be useful.
 Have fun.

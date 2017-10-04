@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="produitsForm" type="org.sid.form.ProduitsForm" />
+	</form-beans>
+
+	<action-mappings>
+		<action path="/produitProcess" name="produitsForm" type="org.sid.web.ProduitAction"
+			scope="request" validate="false" input="/views/Produits.jsp">
+			<forward name="success" path="/views/Produits.jsp" />
+		</action>
+	</action-mappings>
+
+	<controller>
+		<set-property property="processorClass"
+			value="org.springframework.web.struts.AutowiringRequestProcessor" />
+	</controller>
+
+	<message-resources parameter="messages" null="false" />
+
+	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+		<set-property property="contextConfigLocation" value="/WEB-INF/web-app-context.xml" />
+	</plug-in>
+
+</struts-config>
+

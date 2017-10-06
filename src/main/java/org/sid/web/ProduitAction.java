@@ -126,8 +126,8 @@ public class ProduitAction extends Action {
 	private void setPages(HttpServletRequest request, String strPageDefault, String strSizeDefault) {
 		String strPage = request.getParameter("page");
 		String strSize = request.getParameter("size");
-		int page = Integer.parseInt((null == strPage) ? "0" : strPage);
-		int size = Integer.parseInt((null == strSize) ? "5" : strSize);
+		int page = Integer.parseInt((null == strPage) ? strPageDefault : strPage);
+		int size = Integer.parseInt((null == strSize) ? strSizeDefault : strSize);
 		pages = service.listProduits(new PageRequest(page, size));
 	}
 

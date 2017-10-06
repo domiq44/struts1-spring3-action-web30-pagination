@@ -13,3 +13,6 @@ I also add Bootstrap CDN for pagination look and feel.
 
 May be useful.
 Have fun.
+
+![](struts1-spring-action-web30-pagination.png?raw=true)
+

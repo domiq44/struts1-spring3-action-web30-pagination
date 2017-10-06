@@ -37,8 +37,7 @@ public class CatalogueDaoImpl implements ICatalogueDao {
 		List<Produit> list = listProduits();
 		int start = pageable.getOffset();
 		int end = (start + pageable.getPageSize()) > list.size() ? list.size() : (start + pageable.getPageSize());
-		Page<Produit> pages = new PageImpl<Produit>(list.subList(start, end), pageable, list.size());
-		return pages;
+		return new PageImpl<Produit>(list.subList(start, end), pageable, list.size());
 	}
 
 	@Override

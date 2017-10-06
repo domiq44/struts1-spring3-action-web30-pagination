@@ -59,11 +59,7 @@ public class ProduitAction extends Action {
 	public ActionForward paginate(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 		LOG.debug("paginate");
 
-		String strPage = request.getParameter("page");
-		String strSize = request.getParameter("size");
-		int page = Integer.parseInt((null == strPage) ? "0" : strPage);
-		int size = Integer.parseInt((null == strSize) ? "5" : strSize);
-		pages = service.listProduits(new PageRequest(page, size));
+		setPages(request, "0", "5");
 
 		setAttributes(request);
 		return mapping.findForward(SUCCESS);
@@ -72,11 +68,7 @@ public class ProduitAction extends Action {
 	public ActionForward index(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) {
 		LOG.debug("index");
 
-		String strPage = request.getParameter("page");
-		String strSize = request.getParameter("size");
-		int page = Integer.parseInt((null == strPage) ? "0" : strPage);
-		int size = Integer.parseInt((null == strSize) ? "5" : strSize);
-		pages = service.listProduits(new PageRequest(page, size));
+		setPages(request, "0", "5");
 
 		setAttributes(request);
 		return mapping.findForward(SUCCESS);
@@ -100,12 +92,9 @@ public class ProduitAction extends Action {
 			service.addProduit(produit);
 			editMode = false;
 		}
-		String strPage = request.getParameter("page");
-		String strSize = request.getParameter("size");
-		int page = Integer.parseInt((null == strPage) ? "0" : strPage);
-		int size = Integer.parseInt((null == strSize) ? "5" : strSize);
 		produit = new Produit();
-		pages = service.listProduits(new PageRequest(page, size));
+
+		setPages(request, "0", "5");
 
 		setAttributes(request);
 		return mapping.findForward(SUCCESS);
@@ -115,15 +104,10 @@ public class ProduitAction extends Action {
 		LOG.debug("delete");
 
 		String ref = request.getParameter("ref");
-		String strPage = request.getParameter("page");
-		String strSize = request.getParameter("size");
-		int page = Integer.parseInt((null == strPage) ? "0" : strPage);
-		int size = Integer.parseInt((null == strSize) ? "5" : strSize);
 		service.deleteProduit(ref);
-		pages = service.listProduits(new PageRequest(page, size));
+		setPages(request, "0", "5");
 
 		setAttributes(request);
-
 		return mapping.findForward(SUCCESS);
 	}
 
@@ -132,16 +116,19 @@ public class ProduitAction extends Action {
 
 		editMode = true;
 		String ref = request.getParameter("ref");
+		produit = service.getProduit(ref);
+		setPages(request, "0", "5");
+
+		setAttributes(request);
+		return mapping.findForward(SUCCESS);
+	}
+
+	private void setPages(HttpServletRequest request, String strPageDefault, String strSizeDefault) {
 		String strPage = request.getParameter("page");
 		String strSize = request.getParameter("size");
 		int page = Integer.parseInt((null == strPage) ? "0" : strPage);
 		int size = Integer.parseInt((null == strSize) ? "5" : strSize);
-		produit = service.getProduit(ref);
 		pages = service.listProduits(new PageRequest(page, size));
-
-		setAttributes(request);
-
-		return mapping.findForward(SUCCESS);
 	}
 
 	private void setAttributes(HttpServletRequest request) {

@@ -1,7 +1,5 @@
 package org.sid.form;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
@@ -24,7 +22,6 @@ public class ProduitsForm extends ActionForm {
 	private int quantite;
 	private boolean promo;
 
-	// private List<Produit> produits;
 	private Page<Produit> pages;
 
 	private boolean editMode = false;
@@ -73,14 +70,6 @@ public class ProduitsForm extends ActionForm {
 		this.promo = promo;
 	}
 
-//	public List<Produit> getProduits() {
-//		return produits;
-//	}
-
-//	public void setProduits(List<Produit> produits) {
-//		this.produits = produits;
-//	}
-
 	public Page<Produit> getPages() {
 		return pages;
 	}
@@ -123,8 +112,8 @@ public class ProduitsForm extends ActionForm {
 			errors.add("designation", new ActionMessage("error.designation.required"));
 		}
 
-		if (prix < 1.0 || prix > 1000.0) {
-			errors.add("prix", new ActionMessage("error.prix.invalid", 1.0, 1000.0));
+		if (prix < 1.0 || prix > 10000.0) {
+			errors.add("prix", new ActionMessage("error.prix.invalid", 1.0, 10000.0));
 		}
 
 		if (quantite < 1 || quantite > 500) {

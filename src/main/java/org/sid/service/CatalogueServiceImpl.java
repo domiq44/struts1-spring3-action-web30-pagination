@@ -1,7 +1,5 @@
 package org.sid.service;
 
-import java.util.List;
-
 import org.sid.dao.ICatalogueDao;
 import org.sid.entities.Produit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +16,6 @@ public class CatalogueServiceImpl implements ICatalogueService {
 	@Override
 	public void addProduit(Produit p) {
 		dao.addProduit(p);
-	}
-
-	@Override
-	public List<Produit> listProduits() {
-		return dao.listProduits();
 	}
 
 	@Override
